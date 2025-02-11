@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,10 @@ Route::get('/category', function() {
 Route::get('/book', function() {
     return view('books.baseBook');
 })->name('book');
+
+Route::get('/role', function() {
+    return view('roles.baseRole');
+})->name('role');
 
 // Route User
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -61,3 +66,11 @@ Route::post('/book/store', [BookController::class, 'store'])->name('book.store')
 Route::get('/book/edit/{book}', [BookController::class, 'edit'])->name('book.edit');
 Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
 Route::put('/book/update/{book}', [BookController::class, 'update'])->name('book.update');
+
+// Route Role
+Route::get('/role', [RoleController::class, 'index'])->name('role');
+Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
+Route::post('/role/store', [RoleController::class, 'store'])->name('role.store');
+Route::get('/role/edit/{role}', [RoleController::class, 'edit'])->name('role.edit');
+Route::delete('/role/delete/{role}', [RoleController::class, 'destroy'])->name('role.destroy');
+Route::put('/role/update/{role}', [RoleController::class, 'update'])->name('role.update');
