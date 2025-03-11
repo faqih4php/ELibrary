@@ -32,19 +32,31 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        $title = $request->input('title');
-        $author = $request->input('author');
-        $category = $request->input('category');
-
-        $book = Book::create([
-            'title' => $title,
-            'author' => $author,
-            'categories_id' => $category
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'cover' => 'required',
         ]);
 
-        if ($book) {
-            return redirect('/book')->with('success', 'Create Successfully');
+        if($request->hasFile('cover')){
+            $imageName = time().'.'.$request->file('cover')->getClientOriginalExtension();
+              
+             $request->cover->move(public_path('images'), $imageName);
+            Book::create([
+                'title' => $request->title,
+                'author' => $request->author,
+                'category_id' => $request->category,
+                'description' => $request->description,
+                'cover' => $imageName,
+            ]);
+
+            return redirect()->route('books.index')->with('msg','Succes Add Book');
         }
+
+        return back()->with('msg','Error While Add Book');
+    
     }
 
     /**

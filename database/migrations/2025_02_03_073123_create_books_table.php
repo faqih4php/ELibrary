@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title'); //judul buku
             $table->string('author');
             $table->foreignId('categories_id')->constrained('categories');
+            $table->string('description');
+            $table->string('cover');
             $table->timestamps();
         });
     }

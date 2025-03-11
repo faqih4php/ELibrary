@@ -62,6 +62,9 @@ ELibrary | Book
                             Category
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Description
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -88,6 +91,11 @@ ELibrary | Book
                             <td class="py-4 items-center text-gray-900 dark:text-white">
                                 <div class="ps-3">
                                     <div class="text-base font-semibold">{{ $book->category?->name ?? 'No category' }}</div>
+                                </div>
+                            </td>
+                            <td class="py-4 items-center text-gray-900 dark:text-white">
+                                <div class="ps-3">
+                                    <div class="text-base font-semibold">{{ $book->description }}</div>
                                 </div>
                             </td>
                             <td class="px-6 py-4">

@@ -12,6 +12,8 @@ class Book extends Model
         'title',
         'author',
         'categories_id',
+        'description',
+        'cover'
     ];
 
     public function category() : BelongsTo{
